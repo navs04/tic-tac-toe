@@ -5,8 +5,12 @@ let matrix= [
 ];
 
 const board = document.querySelector("#gameboard");
-const result = document.querySelector("#result");
 let gameOver = false;
+let move = 0;
+
+const result = document.querySelector("#result");
+const winner = document.createElement('p');
+result.appendChild(winner);
 
 function gameboard(){
     let currentPlayer ="X";
@@ -18,22 +22,27 @@ function gameboard(){
 
             ele.textContent = matrix[i][j];
             board.appendChild(ele);
-            
+
             ele.addEventListener('click', () => {
-                if(gameOver == false && matrix[i][j] == ""){
-                    matrix[i][j] = currentPlayer;
-                    ele.textContent = currentPlayer;
+                if(matrix[i][j] == ""){
+                    if(gameOver == false){
+                        move++;
+                        matrix[i][j] = currentPlayer;
+                        ele.textContent = currentPlayer;
 
-                    game();
+                        game();
 
-                    if(win == true){
-                        gameOver = true;
-                        const winner = document.createElement('p');
-                        winner.textContent = `${currentPlayer} won !`;
-                        result.appendChild(winner);
+                        if(win == true){
+                            gameOver = true;
+                            winner.textContent = `${currentPlayer} won !`;
+                        }
+                        else if(move == 9){
+                            gameOver = true;
+                            winner.textContent = `It's  a tie !`;
+                        }
+
+                        currentPlayer = currentPlayer === "X" ? "O" : "X";
                     }
-
-                    currentPlayer = currentPlayer === "X" ? "O" : "X";
                 }
             })
         }
@@ -70,6 +79,3 @@ function game(){
         win = true;
     }
 }
-
-console.log(matrix);
-
