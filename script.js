@@ -7,7 +7,7 @@ let matrix= [
 const board = document.querySelector("#gameboard");
 
 function gameboard(){
-    let isClicked = false;
+    let currentPlayer ="X";
 
     for(let i=0;i<3;i++){
         for(let j=0;j<3;j++){
@@ -18,9 +18,9 @@ function gameboard(){
             board.appendChild(ele);
 
             ele.addEventListener('click', () => {
-                ele.textContent = 'X';
-                matrix[i][j] = 'X';
-                isClicked = true;
+                matrix[i][j] = currentPlayer;
+                ele.textContent = currentPlayer;
+                currentPlayer = currentPlayer === "X" ? "O" : "X";
             })
         }
     }
@@ -59,5 +59,3 @@ function game(){
 
 console.log(matrix);
 
-game();
-console.log(score);
