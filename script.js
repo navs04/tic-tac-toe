@@ -79,3 +79,19 @@ function game(){
         win = true;
     }
 }
+
+const resetBtn = document.querySelector("#reset");
+resetBtn.addEventListener('click', () => {
+    board.innerHTML = "";
+    matrix= [
+        ["","",""],
+        ["","",""],
+        ["","",""]
+    ];
+    gameboard();
+
+    gameOver = false;
+    win = false;
+    move = 0;
+    winner.textContent = "";
+})
