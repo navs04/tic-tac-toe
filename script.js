@@ -5,6 +5,8 @@ let matrix= [
 ];
 
 const board = document.querySelector("#gameboard");
+const result = document.querySelector("#result");
+let gameOver = false;
 
 function gameboard(){
     let currentPlayer ="X";
@@ -16,11 +18,23 @@ function gameboard(){
 
             ele.textContent = matrix[i][j];
             board.appendChild(ele);
-
+            
             ele.addEventListener('click', () => {
-                matrix[i][j] = currentPlayer;
-                ele.textContent = currentPlayer;
-                currentPlayer = currentPlayer === "X" ? "O" : "X";
+                if(gameOver == false && matrix[i][j] == ""){
+                    matrix[i][j] = currentPlayer;
+                    ele.textContent = currentPlayer;
+
+                    game();
+
+                    if(win == true){
+                        gameOver = true;
+                        const winner = document.createElement('p');
+                        winner.textContent = `${currentPlayer} won !`;
+                        result.appendChild(winner);
+                    }
+
+                    currentPlayer = currentPlayer === "X" ? "O" : "X";
+                }
             })
         }
     }
@@ -28,32 +42,32 @@ function gameboard(){
 
 gameboard();
 
-var score=0;
+let win = false;
 
 function game(){
     if(matrix[0][0]==matrix[0][1] && matrix[0][1]==matrix[0][2] && matrix[0][0]!=""){
-        score++;
+        win = true;
     }
-    if(matrix[1][0]==matrix[1][1] && matrix[1][1]==matrix[1][2] && matrix[1][0]!=""){
-        score++;
+    else if(matrix[1][0]==matrix[1][1] && matrix[1][1]==matrix[1][2] && matrix[1][0]!=""){
+        win = true;
     }
-    if(matrix[2][0]==matrix[2][1] && matrix[2][1]==matrix[2][2] && matrix[2][0]!=""){
-        score++;
+    else if(matrix[2][0]==matrix[2][1] && matrix[2][1]==matrix[2][2] && matrix[2][0]!=""){
+        win = true;
     }
-    if(matrix[0][0]==matrix[1][0] && matrix[1][0]==matrix[2][0] && matrix[0][0]!=""){
-        score++;
+    else if(matrix[0][0]==matrix[1][0] && matrix[1][0]==matrix[2][0] && matrix[0][0]!=""){
+        win = true;
     }
-    if(matrix[0][1]==matrix[1][1] && matrix[1][1]==matrix[2][1] && matrix[0][1]!=""){
-        score++;
+    else if(matrix[0][1]==matrix[1][1] && matrix[1][1]==matrix[2][1] && matrix[0][1]!=""){
+        win = true;
     }
-    if(matrix[0][2]==matrix[1][2] && matrix[1][2]==matrix[2][2] && matrix[0][2]!=""){
-        score++;
+    else if(matrix[0][2]==matrix[1][2] && matrix[1][2]==matrix[2][2] && matrix[0][2]!=""){
+        win = true;
     }
-    if(matrix[0][0]==matrix[1][1] && matrix[1][1]==matrix[2][2] && matrix[0][0]!=""){
-        score++;
+    else if(matrix[0][0]==matrix[1][1] && matrix[1][1]==matrix[2][2] && matrix[0][0]!=""){
+        win = true;
     }
-    if(matrix[0][2]==matrix[1][1] && matrix[1][1]==matrix[2][0] && matrix[0][2]!=""){
-        score++;
+    else if(matrix[0][2]==matrix[1][1] && matrix[1][1]==matrix[2][0] && matrix[0][2]!=""){
+        win = true;
     }
 }
 
