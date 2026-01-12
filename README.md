@@ -1,4 +1,4 @@
-# tic-tac-toe
+# Tic-Tac-Toe
 A fully functional Tic-Tac-Toe game built with vanilla JavaScript, HTML, and CSS, following a modular architecture using the Module Pattern (IIFE).
 The game supports two players, win and tie detection, turn switching, and a reset feature — all with clean separation between logic and UI.
 
@@ -6,9 +6,7 @@ The game supports two players, win and tie detection, turn switching, and a rese
 
 This project follows a separation of concerns approach using JavaScript modules:
 
-1. GameBoard Module
-
-Responsible for:
+GameBoard Module:
 
 - Storing the board state as a 3×3 array
 
@@ -16,9 +14,7 @@ Responsible for:
 
 - Resetting the board
 
-2. GameController Module
-
-Responsible for:
+GameController Module:
 
 - Tracking the current player
 
@@ -30,9 +26,7 @@ Responsible for:
 
 - Managing game state
 
-3. DisplayController Module
-
-Responsible for:
+DisplayController Module:
 
 - Rendering the board in the DOM
 
