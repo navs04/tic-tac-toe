@@ -108,7 +108,11 @@ const gameController = (function(){
 })();
 
 const gameboard = document.querySelector("#gameboard");
-const resetBtn = document.querySelector("#reset");
+
+const reset = document.querySelector("#reset");
+const resetBtn = document.createElement('button');
+resetBtn.textContent = "Reset";
+reset.appendChild(resetBtn);
 
 const displayController = (function(){
     const render = () => {
